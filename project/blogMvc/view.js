@@ -102,5 +102,19 @@ V.show = function (post) {
   return V.layout(post.title, `
     <h1>${post.title}</h1>
     <p>${post.body}</p>
+    <a href="/post/${post.id}/edit">edit</a>
+    <a href="/post/${post.id}/delete">delete</a>
+  `)
+}
+
+V.edit = function (post) {
+  return V.layout('編輯貼文', `
+  <h1>編輯貼文</h1>
+  <p>編輯貼文</p>
+  <form action="/post/${post.id}/editwell" method="post">
+    <p><input type="text" placeholder="Title" name="title" value="${post.title}"></p>
+    <p><textarea placeholder="Contents" name="body">${post.body}</textarea></p>
+    <p><input type="submit" value="編輯完成"></p>
+  </form>
   `)
 }
