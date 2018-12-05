@@ -1,14 +1,27 @@
 const M = module.exports = {}
 
-const posts = []
-var id = 0
-M.add = function (post) {
-  posts.push(post)
-  post.created_at = new Date()
-  post.id = id
-  id++
+
+M.add = function (post,user) {
+  const p = post
+  p.created_at = new Date()
+  p.user = user
+  return p
 }
 
+M.block = function(user,post){
+  if(!post && user !==""){
+    return "block"
+  }else{
+    if(post && post[0].user !== ""){
+      if (post[0].user === user) {return "block"}
+      else {return "none"}
+    }else{
+      return "none"
+    }
+  }
+}
+
+/*
 M.edit = function (id, post) {
   for(let p of posts){
     if(p.id == id) {   
@@ -35,3 +48,4 @@ M.get = function (id) {
 M.list = function () {
   return posts
 }
+*/
